@@ -1,0 +1,79 @@
+let events:Array<any>=[];
+let sightsArray:Array<any>=[];
+let restaurantsArray:Array<any>=[];
+
+class loc{
+	city="";
+	zipcode="";
+
+
+
+	constructor(city, zipcode){
+		this.city = city;
+		this.zipcode = zipcode;
+	}
+
+	showInfo(){
+		return `The City is ${this.city}, Zipcode is ${this.zipcode}.`;
+	}
+
+}
+
+var loc1 = new loc("Vienna", "1010",);
+var loc2 = new loc("Vienna", "1020",);
+	
+/*function showloc1(){
+	document.getElementById("properties").innerHTML= loc1.showInfo();
+}
+function showloc2() {
+document.getElementById("properties").innerHTML= loc2.showInfo();
+}
+*/
+
+class Sights extends loc{
+	address; image; 
+	/*type; km; seats; fuel;*/
+
+	constructor(city, zipcode, address, image){
+		super(city, zipcode);
+		this.address = address;
+		this.image = image;
+		sightsArray.push(this);
+		console.table(sightsArray);
+
+	}
+
+	showInfo(){
+		return `${super.showInfo()} It's a ${this.address} which has ${this.image}, has ${this.zipcode} and fueled with ${this.city}.<br>`;
+	}
+
+}
+
+var sights1 = new Sights("Vienna", "1020", "Riesenradplatz 1", "https://www.wienerriesenrad.com/media/lightbox_gallery/stadtgasthaus-eisvogel-in-wien-medium-177.jpg",);
+var sights2 = new Sights("Vienna", "1010", "Stephansplatz 3", "https://www.wien.info/media/images/41220-stephansdom-haas-haus-panorama-1to1.jpeg",);
+
+
+
+
+
+
+for (let i = 0; i<sightsArray.length; i++) {
+		document.getElementById("properties").innerHTML+= '<button type="button" onclick="sightsinfo(' +i +')">ShowInfo</button><br />';
+	
+}
+
+
+function sightsinfo(x){
+	y = sightsArray[x];
+	city = y.city;
+	zipcode = y.zipcode;
+	address = y.address;
+	image = y.image
+	document.getElementById("displayproperties").innerHTML = 'Info is' +city +zipcode +address +'<img src=' +image+'>';
+	
+}
+
+
+
+
+// ab hier der Restaurants-Array-Code
