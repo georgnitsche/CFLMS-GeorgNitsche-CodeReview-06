@@ -97,8 +97,8 @@ for (let i = 0; i<sightsArray.length; i++) {
 }
 
 
-var restaurants1 = new Restaurants("Vienna", "1020", "Schachgasse 2", "https://www.wien.info/media/images/41220-stephansdom-haas-haus-panorama-1to1.jpeg", "Asian", "0699909090");
-var restaurants2 = new Restaurants("Vienna", "1010", "Friedrich Müller Weg 3", "https://www.wien.info/media/images/41220-stephansdom-haas-haus-panorama-1to1.jpeg", "Indian", "0664606060");
+var restaurants1 = new Restaurants("Vienna", "1020", "Schachgasse 2", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Illuminated_facade_of_a_3-storey_restaurant_with_Japanese_signs_and_red_paper_lanterns%2C_Chiyoda%2C_Tokyo.jpg/800px-Illuminated_facade_of_a_3-storey_restaurant_with_Japanese_signs_and_red_paper_lanterns%2C_Chiyoda%2C_Tokyo.jpg", "Asian", "0699909090");
+var restaurants2 = new Restaurants("Vienna", "1010", "Friedrich Müller Weg 3", "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Indisches_Restaurant_Osnabr%C3%BCck.jpg/800px-Indisches_Restaurant_Osnabr%C3%BCck.jpg", "Indian", "0664606060");
 
 console.table(restaurantsArray)
 for (let i = 0; i<restaurantsArray.length; i++) {
