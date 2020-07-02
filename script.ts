@@ -51,17 +51,14 @@ class Sights extends loc{
 }
 
 
-class Restaurants extends loc{
-	type;
-	address;
-	image;
+class Restaurants extends Sights{
+	type; phone;
 	/*type; km; seats; fuel;*/
 
-	constructor(city, zipcode, address, image, type){
-		super(city, zipcode);
-		this.address = address;
-		this.image = image;
+	constructor(city, zipcode, address, image, type, phone){
+		super(city, zipcode, address, image);
 		this.type = type;
+		this.phone = phone;
 		restaurantsArray.push(this);
 		console.table(restaurantsArray);
 
@@ -73,7 +70,9 @@ class Restaurants extends loc{
 
 }
 
-var sights1 = new Sights("Vienna", "1020", "Riesenradplatz 1", "https://www.wienerriesenrad.com/media/lightbox_gallery/stadtgasthaus-eisvogel-in-wien-medium-177.jpg",);
+
+
+var sights1 = new Sights("Vienna", "1020", "Riesenradplatz 1", "https://www.wien.info/media/images/41220-stephansdom-haas-haus-panorama-1to1.jpeg",);
 var sights2 = new Sights("Vienna", "1010", "Stephansplatz 3", "https://www.wien.info/media/images/41220-stephansdom-haas-haus-panorama-1to1.jpeg",);
 
 
@@ -84,12 +83,12 @@ for (let i = 0; i<sightsArray.length; i++) {
 }
 
 
-var restaurants1 = new Restaurants("Vienna", "1020", "Schachgasse 2", "https://www.wienerriesenrad.com/media/lightbox_gallery/stadtgasthaus-eisvogel-in-wien-medium-177.jpg", "Asian");
-var restaurants2 = new Restaurants("Vienna", "1010", "Friedrich Müller Weg 3", "https://www.wien.info/media/images/41220-stephansdom-haas-haus-panorama-1to1.jpeg", "Asian");
+var restaurants1 = new Restaurants("Vienna", "1020", "Schachgasse 2", "https://www.wien.info/media/images/41220-stephansdom-haas-haus-panorama-1to1.jpeg", "Asian", "0699909090");
+var restaurants2 = new Restaurants("Vienna", "1010", "Friedrich Müller Weg 3", "https://www.wien.info/media/images/41220-stephansdom-haas-haus-panorama-1to1.jpeg", "Indian", "0664606060");
 
 console.table(restaurantsArray)
 for (let i = 0; i<restaurantsArray.length; i++) {
-		document.getElementById("properties").innerHTML+= '<button type="button" onclick="restaurantsinfo(' +i +')">ShowInfo</button><br />';
+		document.getElementById("properties").innerHTML+= '<button type="button" onclick="restaurantsinfo(' +i +')">ShowRestaurant</button><br />';
 	
 }
 
@@ -112,7 +111,8 @@ function restaurantsinfo(x) {
 	let address = restaurantsArray[x].address;
 	let image = restaurantsArray[x].image;
 	let type = restaurantsArray[x].type;
-	document.getElementById("displayproperties").innerHTML += 'Info is' +city +zipcode +type +address +'<img src=' +image+'>';	
+	let phone = restaurantsArray[x].phone;
+	document.getElementById("displayproperties").innerHTML += 'Info is' +city +zipcode +type +address +phone +'<img src=' +image+'>';	
 }
 
 
