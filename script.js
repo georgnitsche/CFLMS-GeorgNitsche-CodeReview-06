@@ -14,6 +14,7 @@ var __extends = (this && this.__extends) || (function () {
 var events = [];
 var sightsArray = [];
 var restaurantsArray = [];
+var eventsArray = [];
 var loc = /** @class */ (function () {
     function loc(city, zipcode) {
         this.city = "";
@@ -67,6 +68,21 @@ var Restaurants = /** @class */ (function (_super) {
     };
     return Restaurants;
 }(Sights));
+var Events = /** @class */ (function (_super) {
+    __extends(Events, _super);
+    function Events(city, zipcode, address, image, eventDate, eventTime) {
+        var _this = _super.call(this, city, zipcode, address, image) || this;
+        _this.eventDate = eventDate;
+        _this.eventTime = eventTime;
+        eventsArray.push(_this);
+        console.table(eventsArray);
+        return _this;
+    }
+    Events.prototype.showInfo = function () {
+        return _super.prototype.showInfo.call(this) + " It's a " + this.city + " which has " + this.zipcode + ", has " + this.address + " and fueled with " + this.image + " and " + this.eventDate + " and " + this.eventTime + ".<br>";
+    };
+    return Events;
+}(Sights));
 var sights1 = new Sights("Vienna", "1020", "Riesenradplatz 1", "https://www.wien.info/media/images/41220-stephansdom-haas-haus-panorama-1to1.jpeg");
 var sights2 = new Sights("Vienna", "1010", "Stephansplatz 3", "https://www.wien.info/media/images/41220-stephansdom-haas-haus-panorama-1to1.jpeg");
 for (var i = 0; i < sightsArray.length; i++) {
@@ -77,6 +93,12 @@ var restaurants2 = new Restaurants("Vienna", "1010", "Friedrich Müller Weg 3", 
 console.table(restaurantsArray);
 for (var i = 0; i < restaurantsArray.length; i++) {
     document.getElementById("properties").innerHTML += '<button type="button" onclick="restaurantsinfo(' + i + ')">ShowRestaurant</button><br />';
+}
+var events1 = new Events("Vienna", "1120", "Klausgasse 3", "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/INC_en_directo_en_la_sala_Rep%C3%BAblica_%28Valencia%29_3.jpg/1920px-INC_en_directo_en_la_sala_Rep%C3%BAblica_%28Valencia%29_3.jpg", "03.02.2021", "17:00");
+var events2 = new Events("Vienna", "1140", "Friedrichsallee 5", "https://upload.wikimedia.org/wikipedia/commons/2/23/Ormskirk_Music_Society_in_concert.jpg", "03.04.2021", "19:00");
+console.table(eventsArray);
+for (var i = 0; i < eventsArray.length; i++) {
+    document.getElementById("properties").innerHTML += '<button type="button" onclick="eventsinfo(' + i + ')">ShowEvent</button><br />';
 }
 function sightsinfo(x) {
     var y = sightsArray[x];
@@ -94,5 +116,15 @@ function restaurantsinfo(x) {
     var type = restaurantsArray[x].type;
     var phone = restaurantsArray[x].phone;
     document.getElementById("displayproperties").innerHTML += 'Info is' + city + zipcode + type + address + phone + '<img src=' + image + '>';
+}
+function eventsinfo(x) {
+    var y = eventsArray[x];
+    var city = y.city;
+    var zipcode = y.zipcode;
+    var address = y.address;
+    var image = y.image;
+    var eventDate = y.eventDate;
+    var eventTime = y.eventTime;
+    document.getElementById("displayproperties").innerHTML += 'Info is' + city + zipcode + address + eventDate + eventTime + '<img src=' + image + '>';
 }
 // ab hier der Restaurants-Array-Code

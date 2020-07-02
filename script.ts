@@ -2,6 +2,7 @@
 let events:Array<any>=[];
 let sightsArray:Array<any>=[];
 let restaurantsArray:Array<any>=[];
+let eventsArray:Array<any>=[];
 
 class loc{
 	city="";
@@ -70,8 +71,21 @@ class Restaurants extends Sights{
 
 }
 
+class Events extends Sights {
+	eventDate; eventTime;
 
+	constructor(city, zipcode, address, image, eventDate, eventTime) {
+		super(city, zipcode, address, image);
+		this.eventDate = eventDate;
+		this.eventTime = eventTime;
+		eventsArray.push(this);
+		console.table(eventsArray);
+	}
+	showInfo(){
+		return `${super.showInfo()} It's a ${this.city} which has ${this.zipcode}, has ${this.address} and fueled with ${this.image} and ${this.eventDate} and ${this.eventTime}.<br>`;
+	}
 
+}
 var sights1 = new Sights("Vienna", "1020", "Riesenradplatz 1", "https://www.wien.info/media/images/41220-stephansdom-haas-haus-panorama-1to1.jpeg",);
 var sights2 = new Sights("Vienna", "1010", "Stephansplatz 3", "https://www.wien.info/media/images/41220-stephansdom-haas-haus-panorama-1to1.jpeg",);
 
@@ -91,14 +105,21 @@ for (let i = 0; i<restaurantsArray.length; i++) {
 		document.getElementById("properties").innerHTML+= '<button type="button" onclick="restaurantsinfo(' +i +')">ShowRestaurant</button><br />';
 	
 }
+var events1 = new Events("Vienna", "1120", "Klausgasse 3", "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/INC_en_directo_en_la_sala_Rep%C3%BAblica_%28Valencia%29_3.jpg/1920px-INC_en_directo_en_la_sala_Rep%C3%BAblica_%28Valencia%29_3.jpg", "03.02.2021", "17:00");
+var events2 = new Events("Vienna", "1140", "Friedrichsallee 5", "https://upload.wikimedia.org/wikipedia/commons/2/23/Ormskirk_Music_Society_in_concert.jpg", "03.04.2021", "19:00");
 
+console.table(eventsArray)
+for (let i = 0; i<eventsArray.length; i++) {
+		document.getElementById("properties").innerHTML+= '<button type="button" onclick="eventsinfo(' +i +')">ShowEvent</button><br />';
+	
+}
 
 function sightsinfo(x){
 	let y = sightsArray[x];
 	let city = y.city;
 	let zipcode = y.zipcode;
 	let address = y.address;
-	let image = y.image
+	let image = y.image;
 	document.getElementById("displayproperties").innerHTML += 'Info is' +city +zipcode +address +'<img src=' +image+'>';
 	
 }
@@ -115,5 +136,15 @@ function restaurantsinfo(x) {
 	document.getElementById("displayproperties").innerHTML += 'Info is' +city +zipcode +type +address +phone +'<img src=' +image+'>';	
 }
 
+function eventsinfo(x){
+	let y = eventsArray[x];
+	let city = y.city;
+	let zipcode = y.zipcode;
+	let address = y.address;
+	let image = y.image;
+	let eventDate = y.eventDate;
+	let eventTime = y.eventTime;
+document.getElementById("displayproperties").innerHTML += 'Info is' +city +zipcode +address +eventDate + eventTime +'<img src=' +image+'>';
 
+}
 // ab hier der Restaurants-Array-Code
